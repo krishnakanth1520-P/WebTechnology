@@ -1,0 +1,185 @@
+/* RESET */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Segoe UI", sans-serif;
+}
+
+/* BODY */
+body {
+    background: #ffffff;
+    color: #111;
+}
+
+/* NAVBAR */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 30px 90px;
+}
+
+/* LOGO */
+.logo {
+    font-size: 26px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+}
+
+/* NAV LINKS */
+.nav-links a {
+    margin: 0 20px;
+    text-decoration: none;
+    color: #111;
+    font-size: 14px;
+    font-weight: 600;
+}
+
+/* NAV BUTTON */
+.nav-btn {
+    background: #7b1414;
+    color: white;
+    border: none;
+    padding: 10px 22px;
+    border-radius: 20px;
+    font-size: 13px;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+}
+
+.nav-btn:hover {
+    transform: translateY(-2px);
+}
+
+/* HERO SECTION */
+.hero {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 90px;
+}
+
+/* HERO TEXT */
+.hero-text {
+    width: 50%;
+    animation: fadeLeft 1s ease forwards;
+}
+
+.hero-text h1 {
+    font-size: 56px;
+    font-weight: 800;
+    line-height: 1.15;
+    margin-bottom: 25px;
+}
+
+.hero-text span {
+    color: #b6b72c;
+    font-style: italic;
+}
+
+/* HERO PARAGRAPH */
+.hero-text p {
+    max-width: 480px;
+    font-size: 16px;
+    color: #555;
+    margin-bottom: 35px;
+    line-height: 1.6;
+}
+
+/* HERO BUTTON */
+.hero-btn {
+    background: #7b1414;
+    color: white;
+    border: none;
+    padding: 14px 32px;
+    border-radius: 30px;
+    font-size: 14px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.hero-btn:hover {
+    background: #5f0f0f;
+    transform: translateY(-3px);
+}
+
+/* HERO IMAGE */
+.hero-image {
+    width: 45%;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    animation: fadeRight 1s ease forwards;
+}
+
+/* BACKGROUND CIRCLE */
+.bg-circle {
+    position: absolute;
+    width: 420px;
+    height: 420px;
+    background: #7b1414;
+    border-radius: 50%;
+    top: 40px;
+    right: 60px;
+    z-index: -1;
+    animation: slowPulse 4s infinite ease-in-out;
+}
+
+/* IMAGE */
+.hero-image img {
+    width: 320px;
+    transform: translateX(40px);
+}
+
+/* ANIMATIONS */
+@keyframes fadeLeft {
+    from {
+        opacity: 0;
+        transform: translateX(-60px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes fadeRight {
+    from {
+        opacity: 0;
+        transform: translateX(60px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes slowPulse {
+    0% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.06);
+    }
+    100% {      
+        transform: scale(1);
+    }
+}
+
+.navbar > .nav-links > li::after{
+    content: "";
+    height: 3px;
+    width: 100%;
+    background-color: red;
+    position: absolute;
+    bottom: 0;
+    left:0;
+    transition: all 1s ease-in;
+    
+}
+
+.nav-links > li:hover::after{
+        width: 100%;
+
+}

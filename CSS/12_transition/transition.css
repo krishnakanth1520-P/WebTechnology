@@ -1,0 +1,52 @@
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    
+}
+
+
+body{
+    background-color: black;
+    
+}
+
+h2{
+    color: aliceblue;
+   text-transform: uppercase;
+   letter-spacing: 5px;
+    
+}
+
+/* .inner{
+       background-color: rgb(255, 255, 39);
+       height: 200px;
+       width: 200px;
+} */
+
+.outer{
+    flex-direction: column;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    gap: 20px;
+
+
+}
+.outer > .inner{
+    background-color: rgb(237, 255, 39);
+    height: 200px;
+    width: 200px;
+    /* transition: all 2s ease;
+    transition-property:all;
+    transition-duration: 3s;
+    transition-timing-function: ease-in;
+    transition-delay: 5s; */
+}
+
+.outer > .inner:hover{
+    background-color: rgb(255, 0, 0);
+    border-radius: 50%;
+    transition: all 5s ease-in-out;
+}

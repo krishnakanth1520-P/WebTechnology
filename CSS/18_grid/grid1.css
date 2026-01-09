@@ -1,0 +1,157 @@
+/* *{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+.outer{
+    height: 100vh;
+    background: linear-gradient(to right, black, red);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+}
+
+.outer > h1{
+    color: white;
+    text-transform: capitalize;
+    letter-spacing: 2px;
+}
+
+.outer > .inner{
+    height: 80%;
+    width: 80%;
+    background-color: rgb(234, 242, 0);
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    border-radius: 2px;
+}
+
+.inner > .box{
+    
+    background-size: cover;
+    background-position: top;
+    transition: ;
+
+}    */
+
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+ }
+
+.outer{
+    height: 100vh;
+    background: linear-gradient(rgb(79, 1, 1), rgb(255, 0, 0));
+    display: flex;
+    flex-direction: column;
+    gap:20px;
+    justify-content: center;
+    align-items: center;
+}
+
+.outer > h1{
+    color: white;
+}
+
+
+.outer > .inner{
+    width: 80vw;
+    height: 70vh;
+    display: grid;
+
+    grid-template-columns: 1fr 1fr 1fr;
+    border-radius: 20px;
+
+}
+
+.outer > h1{
+    text-transform: capitalize;
+    letter-spacing: 2px;
+}
+
+.inner > .card{
+    /* border: 2px solid; */
+
+    background-size: cover;
+    background-position: top;
+    transition: all 1s ease;
+    cursor: pointer;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    margin: 5px;
+    border-radius: 10px;
+
+}
+
+.card > h2{
+    text-transform: uppercase;
+    letter-spacing: 1.2px;
+    color:white;
+    text-shadow: 0px 2px 2px black;
+    font-size: 35px;
+}
+
+.inner > #card1{
+    grid-row: span 2;
+    background-image: url("https://images.pexels.com/photos/1955134/pexels-photo-1955134.jpeg");
+    border-top-left-radius: 20px;
+        
+}
+
+.inner > #card2{
+    background-image: url("https://images.pexels.com/photos/994605/pexels-photo-994605.jpeg");
+}
+.inner > #card3{
+    background-image: url("https://images.pexels.com/photos/1043458/pexels-photo-1043458.jpeg");
+    border-top-right-radius: 20px;
+}
+
+.inner > #card4{
+    grid-column: span 2;
+    background-image: url("https://images.pexels.com/photos/189349/pexels-photo-189349.jpeg");
+}
+.inner > #card5{
+    background-image: url("https://images.pexels.com/photos/847393/pexels-photo-847393.jpeg");
+    border-bottom-left-radius: 20px;
+}
+.inner > #card6{
+    background-image: url("https://images.pexels.com/photos/33044/sunflower-sun-summer-yellow.jpg");
+}
+.inner > #card7{
+    background-image: url("https://images.pexels.com/photos/414181/pexels-photo-414181.jpeg");
+        border-bottom-right-radius: 20px;
+}
+
+.inner > .card:hover{
+    background-position: center;
+}
+
+@keyframes h1 {
+    0%{
+       transform: translateX(1px);
+
+    }
+
+    25%{
+        transform: translateX(50px);
+
+    }
+
+    50%{
+       transform: translateX(50px);
+
+    }
+    
+    100%{
+        transform: translateX(50px);
+
+    }
+    
+}

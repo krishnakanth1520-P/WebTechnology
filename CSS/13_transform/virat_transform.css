@@ -1,0 +1,30 @@
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    
+}
+
+
+.outer{
+    background-color: rgb(190, 28, 28);
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    overflow: auto;
+}
+
+.outer > img{
+    height: 200px;
+    cursor: pointer;
+    border-radius: 25px;
+    box-shadow: 1px 3px 4 px black;
+    transition: all 0.2s ease-in;
+}
+
+.outer > img:hover{
+    transform: scale(1.5);
+
+}
+

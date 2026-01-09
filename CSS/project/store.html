@@ -1,0 +1,501 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>SuperStore — Static Demo</title>
+<style>
+  :root{
+    --bg:#0f1724;
+    --card:#0b1220;
+    --accent:#ff6a00;
+    --muted:#9aa4b2;
+    --glass: rgba(255,255,255,0.04);
+    --radius:14px;
+    --glass-2: rgba(255,255,255,0.02);
+    --max-width:1200px;
+  }
+  /* Reset */
+  *{box-sizing:border-box}
+  html,body{height:100%}
+  body{
+    margin:0;
+    font-family:Inter,ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial;
+    background:linear-gradient(180deg,#081021 0%, #071827 60%);
+    color:#e6eef8;
+    -webkit-font-smoothing:antialiased;
+    -moz-osx-font-smoothing:grayscale;
+    padding:24px;
+    display:flex;
+    justify-content:center;
+  }
+  .wrap{width:100%;max-width:var(--max-width);}
+
+  /* Header */
+  header{
+    display:flex;
+    gap:18px;
+    align-items:center;
+    margin-bottom:20px;
+  }
+  .logo{
+    display:flex;align-items:center;gap:12px;
+  }
+  .logo .mark{
+    width:48px;height:48px;border-radius:10px;
+    background:linear-gradient(135deg,var(--accent),#ffb86b);
+    display:grid;place-items:center;font-weight:700;color:#051027;
+    box-shadow:0 6px 18px rgba(255,106,0,0.18), inset 0 -6px 14px rgba(255,255,255,0.06);
+  }
+  .logo h1{font-size:18px;margin:0;letter-spacing:0.2px}
+  .search{
+    flex:1;
+    display:flex;
+    gap:10px;
+    align-items:center;
+    background:var(--glass-2);
+    border-radius:12px;
+    padding:10px;
+    min-width:220px;
+    box-shadow:inset 0 1px 0 rgba(255,255,255,0.02);
+  }
+  .search input{
+    flex:1;border:0;background:transparent;color:inherit;font-size:15px;padding:8px;
+    outline:none;
+  }
+  .search .btn{background:linear-gradient(90deg,var(--accent),#ff9d4d);border:none;padding:8px 12px;border-radius:8px;color:#051027;font-weight:600;cursor:pointer}
+  .icons{display:flex;gap:12px;align-items:center}
+  .icon-btn{background:var(--glass);padding:8px;border-radius:10px;display:inline-flex;gap:8px;align-items:center;cursor:pointer}
+  .icon-btn .count{background:#ff3860;color:white;padding:3px 7px;border-radius:999px;font-size:12px;margin-left:6px}
+
+  /* Nav */
+  nav{
+    display:flex;
+    gap:12px;
+    margin:12px 0 18px;
+    align-items:center;
+    overflow:auto;
+    padding-bottom:4px;
+  }
+  nav a{
+    padding:8px 14px;border-radius:999px;background:transparent;color:var(--muted);text-decoration:none;font-size:14px;
+  }
+  nav a:hover{background:var(--glass);color:#fff}
+
+  /* Layout */
+  .main{
+    display:grid;
+    grid-template-columns: 260px 1fr;
+    gap:24px;
+    align-items:start;
+  }
+
+  /* Filters */
+  .filters{
+    background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+    border-radius:var(--radius);
+    padding:16px;
+    position:sticky;top:28px;
+  }
+  .filters h3{margin:0 0 12px;font-size:16px;color:#fff}
+  .filter-group{margin-bottom:14px}
+  .filter-group label{display:flex;align-items:center;gap:10px;font-size:14px;color:var(--muted);cursor:pointer}
+  .filter-group input[type="checkbox"]{accent-color:var(--accent)}
+  .price-range{display:flex;gap:8px}
+  .chip{display:inline-block;background:var(--glass);padding:6px 8px;border-radius:8px;font-size:13px;color:var(--muted);margin:6px 6px 0 0}
+
+  /* Product grid */
+  .products{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:18px;
+  }
+  .product{
+    background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+    border-radius:12px;padding:14px;display:flex;flex-direction:column;gap:12px;position:relative;
+    transition:transform .22s ease, box-shadow .22s ease;
+  }
+  .product:hover{transform:translateY(-6px);box-shadow:0 24px 40px rgba(3,8,18,0.6)}
+  .media{
+    height:180px;border-radius:10px;background:linear-gradient(135deg,#0b1220,#071827);display:grid;place-items:center;position:relative;overflow:hidden;
+  }
+  .media .placeholder{
+    width:88%;height:76%;border-radius:8px;background:linear-gradient(90deg, rgba(255,255,255,0.03), rgba(255,255,255,0.01));
+    display:flex;flex-direction:column;justify-content:center;align-items:center;font-weight:700;color:var(--muted);
+  }
+  .badge{
+    position:absolute;left:12px;top:12px;background:var(--accent);color:#051027;padding:6px 8px;border-radius:10px;font-weight:700;font-size:13px;
+  }
+  .fav{position:absolute;right:12px;top:12px;background:rgba(255,255,255,0.04);padding:6px;border-radius:10px}
+  .title{font-weight:700;font-size:15px;margin:6px 0;color:#fff}
+  .desc{font-size:13px;color:var(--muted);margin-top:-6px}
+  .price-row{display:flex;justify-content:space-between;align-items:center;gap:12px}
+  .price{font-weight:800;font-size:18px}
+  .old{font-size:13px;color:var(--muted);text-decoration:line-through}
+  .rating{display:flex;gap:6px;align-items:center;font-size:13px;color:var(--muted)}
+
+  .p-actions{display:flex;gap:8px;margin-top:6px}
+  .btn-outline{flex:1;padding:10px;border-radius:10px;border:1px solid rgba(255,255,255,0.06);background:transparent;color:var(--muted);cursor:pointer;font-weight:600}
+  .btn-primary{background:linear-gradient(90deg,var(--accent),#ff9d4d);color:#051027;padding:10px;border-radius:10px;border:0;font-weight:700;cursor:pointer}
+
+  /* Quick view modal (target) */
+  .quickview{
+    position:fixed;inset:0;display:grid;place-items:center;padding:24px;pointer-events:none;opacity:0;transition:opacity .18s ease;
+  }
+  .quickview:target{pointer-events:auto;opacity:1;}
+  .quick-card{width:min(920px,96%);background:linear-gradient(180deg,#071428,#08162a);border-radius:16px;padding:20px;display:flex;gap:20px;box-shadow:0 40px 80px rgba(2,8,20,0.8)}
+  .quick-media{flex:1;border-radius:12px;background:linear-gradient(135deg,#081827,#0b2130);display:grid;place-items:center;padding:18px}
+  .quick-info{flex:1.1;display:flex;flex-direction:column;gap:10px}
+  .close{justify-self:end;color:var(--muted);text-decoration:none}
+  .tags{display:flex;gap:8px;flex-wrap:wrap}
+
+  /* Cart slide over (checkbox hack) */
+  #cart-toggle{display:none}
+  .cart-toggle-label{cursor:pointer}
+  .cart{
+    position:fixed;right:0;top:0;height:100vh;width:360px;background:linear-gradient(180deg,#06111a,#081726);box-shadow:-24px 0 48px rgba(2,8,20,0.6);
+    transform:translateX(120%);transition:transform .28s cubic-bezier(.2,.9,.25,1);padding:18px;border-left:1px solid rgba(255,255,255,0.02)
+  }
+  #cart-toggle:checked ~ .cart{transform:translateX(0)}
+  .cart h3{margin-top:8px}
+  .cart .item{display:flex;gap:10px;padding:10px 0;border-bottom:1px dashed rgba(255,255,255,0.02)}
+  .cart .item .mini{width:72px;height:72px;border-radius:8px;background:linear-gradient(135deg,#0b1220,#071827);display:grid;place-items:center;color:var(--muted)}
+  .cart .total{display:flex;justify-content:space-between;font-weight:800;padding-top:12px;font-size:16px}
+
+  /* Footer */
+  footer{margin-top:28px;color:var(--muted);font-size:13px;padding:18px;border-radius:12px;background:transparent;text-align:center}
+
+  /* Responsive */
+  @media (max-width:1000px){
+    :root{--max-width:980px}
+    .products{grid-template-columns:repeat(2,1fr)}
+    .main{grid-template-columns: 1fr}
+    .filters{position:static;order:2;display:flex;overflow:auto;gap:8px}
+  }
+  @media (max-width:640px){
+    .products{grid-template-columns:repeat(1,1fr)}
+    header{flex-direction:column;align-items:stretch;gap:8px}
+    .logo h1{font-size:16px}
+    .media{height:220px}
+    .cart{width:100%}
+  }
+
+  /* tiny details */
+  .muted{color:var(--muted)}
+  .small{font-size:13px;color:var(--muted)}
+</style>
+</head>
+<body>
+<div class="wrap" role="document">
+
+  <!-- Header -->
+  <header>
+    <div class="logo" aria-hidden="false">
+      <div class="mark">S</div>
+      <div>
+        <h1>SuperStore</h1>
+        <div class="small muted">A demo marketplace (static)</div>
+      </div>
+    </div>
+
+    <div class="search" role="search" aria-label="Search products">
+      <input placeholder="Search for products, brands and more..." aria-label="search input">
+      <button class="btn">Search</button>
+    </div>
+
+    <div class="icons">
+      <div class="icon-btn" title="Account">👤 <span class="small muted">Hello, Sign in</span></div>
+      <!-- cart toggle -->
+      <label for="cart-toggle" class="icon-btn cart-toggle-label" title="Open cart">
+        🛒 <span class="count">3</span>
+      </label>
+      <input id="cart-toggle" type="checkbox" />
+    </div>
+  </header>
+
+  <!-- Nav -->
+  <nav aria-label="Primary navigation">
+    <a href="#">All</a>
+    <a href="#">Electronics</a>
+    <a href="#">Fashion</a>
+    <a href="#">Home</a>
+    <a href="#">Beauty</a>
+    <a href="#">Toys</a>
+    <a href="#">Grocery</a>
+    <a href="#">Deals</a>
+  </nav>
+
+  <!-- Main -->
+  <div class="main">
+
+    <!-- Filters -->
+    <aside class="filters" aria-label="Filters">
+      <h3>Filters</h3>
+
+      <div class="filter-group">
+        <strong class="small muted">Category</strong>
+        <label><input type="checkbox" checked> Laptops</label>
+        <label><input type="checkbox"> Headphones</label>
+        <label><input type="checkbox"> Home Appliances</label>
+      </div>
+
+      <div class="filter-group">
+        <strong class="small muted">Brand</strong>
+        <div class="chip">Brand A</div><div class="chip">Brand B</div><div class="chip">Brand C</div>
+      </div>
+
+      <div class="filter-group">
+        <strong class="small muted">Price</strong>
+        <div class="price-range">
+          <div class="chip">₹0 - ₹5,000</div>
+          <div class="chip">₹5,000 - ₹20,000</div>
+        </div>
+      </div>
+
+      <div class="filter-group">
+        <strong class="small muted">Customer rating</strong>
+        <label><input type="checkbox"> 4★ & up</label>
+        <label><input type="checkbox"> 3★ & up</label>
+      </div>
+
+    </aside>
+
+    <!-- Products -->
+    <section class="products" aria-label="Product results">
+
+      <!-- product 1 -->
+      <article class="product" id="p1">
+        <div class="media">
+          <div class="badge">Best seller</div>
+          <div class="fav" title="Add to wishlist">♡</div>
+          <div class="placeholder">Laptop 15" <div class="small muted">8GB • 512GB</div></div>
+        </div>
+        <div>
+          <div class="title">ProBook X15 — Lightweight Laptop</div>
+          <div class="desc">Thin, powerful, great battery life</div>
+        </div>
+        <div class="price-row">
+          <div>
+            <div class="price">₹49,999</div>
+            <div class="old">₹64,999</div>
+          </div>
+          <div class="rating">★ 4.6 <span class="small muted"> (2,345)</span></div>
+        </div>
+        <div class="p-actions">
+          <a class="btn-outline" href="#quick-p1" aria-haspopup="dialog">Quick view</a>
+          <button class="btn-primary">Add to cart</button>
+        </div>
+      </article>
+
+      <!-- product 2 -->
+      <article class="product" id="p2">
+        <div class="media">
+          <div class="badge">Deal</div>
+          <div class="fav" title="Add to wishlist">♡</div>
+          <div class="placeholder">Wireless Headphones<div class="small muted">Noise-canceling</div></div>
+        </div>
+        <div>
+          <div class="title">QuietComfort Air</div>
+          <div class="desc">Deep bass, active noise cancellation</div>
+        </div>
+        <div class="price-row">
+          <div>
+            <div class="price">₹9,499</div>
+            <div class="old">₹12,999</div>
+          </div>
+          <div class="rating">★ 4.4 <span class="small muted"> (985)</span></div>
+        </div>
+        <div class="p-actions">
+          <a class="btn-outline" href="#quick-p2">Quick view</a>
+          <button class="btn-primary">Add to cart</button>
+        </div>
+      </article>
+
+      <!-- product 3 -->
+      <article class="product" id="p3">
+        <div class="media">
+          <div class="fav" title="Add to wishlist">♡</div>
+          <div class="placeholder">Smart Speaker<div class="small muted">Voice assistant</div></div>
+        </div>
+        <div>
+          <div class="title">EchoSphere Mini</div>
+          <div class="desc">Compact speaker with rich sound</div>
+        </div>
+        <div class="price-row">
+          <div>
+            <div class="price">₹3,999</div>
+          </div>
+          <div class="rating">★ 4.1 <span class="small muted"> (6,021)</span></div>
+        </div>
+        <div class="p-actions">
+          <a class="btn-outline" href="#quick-p3">Quick view</a>
+          <button class="btn-primary">Add to cart</button>
+        </div>
+      </article>
+
+      <!-- product 4 -->
+      <article class="product" id="p4">
+        <div class="media">
+          <div class="badge">New</div>
+          <div class="fav" title="Add to wishlist">♡</div>
+          <div class="placeholder">4K Smart TV<div class="small muted">55" • HDR</div></div>
+        </div>
+        <div>
+          <div class="title">UltraView 55" 4K</div>
+          <div class="desc">Cinematic display with smart apps</div>
+        </div>
+        <div class="price-row">
+          <div>
+            <div class="price">₹59,999</div>
+            <div class="old">₹74,999</div>
+          </div>
+          <div class="rating">★ 4.7 <span class="small muted"> (1,122)</span></div>
+        </div>
+        <div class="p-actions">
+          <a class="btn-outline" href="#quick-p4">Quick view</a>
+          <button class="btn-primary">Add to cart</button>
+        </div>
+      </article>
+
+      <!-- product 5 -->
+      <article class="product" id="p5">
+        <div class="media">
+          <div class="fav" title="Add to wishlist">♡</div>
+          <div class="placeholder">Instant Pot<div class="small muted">7-in-1</div></div>
+        </div>
+        <div>
+          <div class="title">KitchenMaster 7</div>
+          <div class="desc">Cook fast, safe and easy</div>
+        </div>
+        <div class="price-row">
+          <div>
+            <div class="price">₹6,299</div>
+          </div>
+          <div class="rating">★ 4.3 <span class="small muted"> (2,299)</span></div>
+        </div>
+        <div class="p-actions">
+          <a class="btn-outline" href="#quick-p5">Quick view</a>
+          <button class="btn-primary">Add to cart</button>
+        </div>
+      </article>
+
+      <!-- product 6 -->
+      <article class="product" id="p6">
+        <div class="media">
+          <div class="badge">50% OFF</div>
+          <div class="fav" title="Add to wishlist">♡</div>
+          <div class="placeholder">Fitness Band<div class="small muted">Heart rate monitor</div></div>
+        </div>
+        <div>
+          <div class="title">FitPulse Pro</div>
+          <div class="desc">Track sleep, steps and more</div>
+        </div>
+        <div class="price-row">
+          <div>
+            <div class="price">₹1,499</div>
+            <div class="old">₹2,999</div>
+          </div>
+          <div class="rating">★ 4.0 <span class="small muted"> (12,034)</span></div>
+        </div>
+        <div class="p-actions">
+          <a class="btn-outline" href="#quick-p6">Quick view</a>
+          <button class="btn-primary">Add to cart</button>
+        </div>
+      </article>
+
+    </section>
+  </div>
+
+  <!-- Quick view modals (CSS :target) -->
+  <div id="quick-p1" class="quickview" aria-hidden="false">
+    <div class="quick-card" role="dialog" aria-label="Quick view for ProBook X15">
+      <div>
+        <a class="close" href="#" title="Close">✕</a>
+        <div class="quick-media">
+          <div style="width:86%;height:86%;border-radius:12px;background:linear-gradient(135deg,#07152a,#0b2540);display:grid;place-items:center;">
+            <div style="text-align:center">
+              <div style="font-weight:800;font-size:22px">ProBook X15</div>
+              <div class="small muted">15" • 8GB • 512GB SSD</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="quick-info">
+        <h2 style="margin:0">ProBook X15 — Lightweight Laptop</h2>
+        <div class="small muted">Ships in 2-3 days • 1 year warranty</div>
+        <div style="margin-top:8px;font-size:18px;font-weight:800">₹49,999 <span class="small muted" style="text-decoration:line-through;margin-left:10px">₹64,999</span></div>
+        <div style="margin-top:8px">Ultra-thin aluminum chassis, 10-hour battery life and fast SSD.</div>
+        <div style="margin-top:8px" class="tags">
+          <div class="chip">Free delivery</div><div class="chip">No-cost EMI</div><div class="chip">Bank offer</div>
+        </div>
+
+        <div style="margin-top:auto;display:flex;gap:12px">
+          <button class="btn-primary" style="flex:1">Add to cart</button>
+          <a href="#" class="btn-outline" style="display:inline-flex;align-items:center;padding:10px 14px">View details</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Similar quick views -->
+  <div id="quick-p2" class="quickview"><div class="quick-card"><a class="close" href="#">✕</a><div style="display:flex;gap:18px"><div class="quick-media"><div style="width:86%;height:86%;border-radius:12px;background:linear-gradient(135deg,#1a0b1a,#2b0730);display:grid;place-items:center">Headphones</div></div><div class="quick-info"><h2 style="margin:0">QuietComfort Air</h2><div class="small muted">Active noise cancellation • 20hr</div><div style="margin-top:8px;font-size:18px;font-weight:800">₹9,499 <span class="small muted" style="text-decoration:line-through;margin-left:10px">₹12,999</span></div><div style="margin-top:auto;display:flex;gap:12px"><button class="btn-primary" style="flex:1">Add to cart</button><a class="btn-outline" href="#">View details</a></div></div></div></div></div>
+
+  <div id="quick-p3" class="quickview"><div class="quick-card"><a class="close" href="#">✕</a><div style="display:flex;gap:18px"><div class="quick-media"><div style="width:86%;height:86%;border-radius:12px;background:linear-gradient(135deg,#071a13,#0b3640);display:grid;place-items:center">Speaker</div></div><div class="quick-info"><h2 style="margin:0">EchoSphere Mini</h2><div class="small muted">Compact • Voice assistant</div><div style="margin-top:8px;font-size:18px;font-weight:800">₹3,999</div><div style="margin-top:auto;display:flex;gap:12px"><button class="btn-primary" style="flex:1">Add to cart</button><a class="btn-outline" href="#">View details</a></div></div></div></div></div>
+
+  <div id="quick-p4" class="quickview"><div class="quick-card"><a class="close" href="#">✕</a><div style="display:flex;gap:18px"><div class="quick-media"><div style="width:86%;height:86%;border-radius:12px;background:linear-gradient(135deg,#0a071a,#1b0b36);display:grid;place-items:center">4K TV</div></div><div class="quick-info"><h2 style="margin:0">UltraView 55"</h2><div class="small muted">Smart TV • HDR</div><div style="margin-top:8px;font-size:18px;font-weight:800">₹59,999</div><div style="margin-top:auto;display:flex;gap:12px"><button class="btn-primary" style="flex:1">Add to cart</button><a class="btn-outline" href="#">View details</a></div></div></div></div></div>
+
+  <div id="quick-p5" class="quickview"><div class="quick-card"><a class="close" href="#">✕</a><div style="display:flex;gap:18px"><div class="quick-media"><div style="width:86%;height:86%;border-radius:12px;background:linear-gradient(135deg,#141007,#2b250f);display:grid;place-items:center">Instant Pot</div></div><div class="quick-info"><h2 style="margin:0">KitchenMaster 7</h2><div class="small muted">Multi-cooker</div><div style="margin-top:8px;font-size:18px;font-weight:800">₹6,299</div><div style="margin-top:auto;display:flex;gap:12px"><button class="btn-primary" style="flex:1">Add to cart</button><a class="btn-outline" href="#">View details</a></div></div></div></div></div>
+
+  <div id="quick-p6" class="quickview"><div class="quick-card"><a class="close" href="#">✕</a><div style="display:flex;gap:18px"><div class="quick-media"><div style="width:86%;height:86%;border-radius:12px;background:linear-gradient(135deg,#271010,#3b1b1b);display:grid;place-items:center">Fitness Band</div></div><div class="quick-info"><h2 style="margin:0">FitPulse Pro</h2><div class="small muted">Health tracking</div><div style="margin-top:8px;font-size:18px;font-weight:800">₹1,499</div><div style="margin-top:auto;display:flex;gap:12px"><button class="btn-primary" style="flex:1">Add to cart</button><a class="btn-outline" href="#">View details</a></div></div></div></div></div>
+
+  <!-- Cart slide over -->
+  <aside class="cart" aria-label="Shopping cart">
+    <h3>Your cart</h3>
+    <div class="small muted">3 items</div>
+
+    <div style="margin-top:12px">
+      <div class="item">
+        <div class="mini">Laptop</div>
+        <div style="flex:1">
+          <div style="font-weight:700">ProBook X15</div>
+          <div class="small muted">₹49,999 • Qty 1</div>
+        </div>
+        <div style="text-align:right">₹49,999</div>
+      </div>
+
+      <div class="item">
+        <div class="mini">Head</div>
+        <div style="flex:1">
+          <div style="font-weight:700">QuietComfort Air</div>
+          <div class="small muted">₹9,499 • Qty 1</div>
+        </div>
+        <div style="text-align:right">₹9,499</div>
+      </div>
+
+      <div class="item">
+        <div class="mini">Spkr</div>
+        <div style="flex:1">
+          <div style="font-weight:700">EchoSphere Mini</div>
+          <div class="small muted">₹3,999 • Qty 1</div>
+        </div>
+        <div style="text-align:right">₹3,999</div>
+      </div>
+
+      <div class="total">
+        <div class="small muted">Subtotal</div>
+        <div style="font-weight:900">₹63,497</div>
+      </div>
+
+      <div style="margin-top:12px;display:flex;gap:8px">
+        <button class="btn-primary" style="flex:1">Proceed to checkout</button>
+        <label for="cart-toggle" class="btn-outline" style="padding:10px 14px;display:inline-flex;align-items:center">Close</label>
+      </div>
+    </div>
+  </aside>
+
+  <footer>
+    © SuperStore demo • Built with ❤️ using only HTML & CSS • Not for production
+  </footer>
+</div>
+</body>
+</html>

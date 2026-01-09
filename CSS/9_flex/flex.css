@@ -1,0 +1,28 @@
+*{
+    padding: 0;
+    margin: 0;
+    
+}
+
+.inner{
+    height: 600px;
+    width: 700px;
+    border:2px solid red;
+    /* flex-direction: column;
+    justify-content: center;
+    align-items: center; */
+
+    display: flex;
+    justify-content: center;     /*works row wise */
+    align-items: end;        /* works column wise */
+    gap: 10px;
+    /* flex-direction: row;
+    flex-direction: column-reverse; */
+}
+
+.inner > .box{
+    height: 100px;
+    width: 100px;
+    border: 5px solid black;
+    
+}

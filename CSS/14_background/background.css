@@ -1,0 +1,34 @@
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+/* .outer{
+    background: linear-gradient(red yellow green);   height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.outer > .inner{
+    height: 60%;
+    width: 75%;
+    background-color: yellow;
+    background-repeat: no-repeat;
+    background-image: url("https://cdn.pixabay.com/photo/2022/11/06/10/14/ai-generated-7573687_1280.jpg");
+    background-size: cover;
+    background-position: center; 
+
+
+
+} */
+
+.outer{
+    height: 100vh;
+    /* background-color: aqua; */
+    background: linear-gradient( red, yellow, green);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

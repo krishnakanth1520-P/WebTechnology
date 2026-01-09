@@ -1,0 +1,12 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Kedebideri:wght@400;500;600;700;800;900&display=swap');
+p{
+    color: blueviolet;
+    font-size: 40px;
+    font-weight: bold;
+    font-family: "Playwrite US Trad Guides", cursive;
+}
+
+h2{
+    font-style: italic;
+}

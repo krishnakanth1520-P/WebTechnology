@@ -1,0 +1,105 @@
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+.outer{
+    height: 100vh;
+    background-color: rgb(255, 255, 255);
+    position: relative;
+
+}
+
+.outer > .upper{
+    height: 50vh;
+    background-color: blueviolet
+
+}
+
+
+.outer > .center{
+    background-color: rgb(255, 255, 255);
+    height: 500px;
+    width: 1250px;
+    position: absolute;
+    left: 725px;
+    border-radius:30px;
+    box-shadow: 2px 3px 4px black;
+    transform: translate(-50%,-50%);
+    display: flex;
+
+
+
+}
+.outer > .lower{
+    height: 50vh;
+    background-color: rgb(74, 234, 255);
+}
+
+.center > .left{
+    flex-basis: 45%;
+    background-color:   rgb   (187, 174, 157);
+}
+
+.center > .right{
+    flex-basis: 55%;
+    background-color: rgb(255, 255, 255);
+}
+
+.right > img{
+    margin-top: 30px;
+    height: 65%;
+    width: 90%;
+    object-fit: cover;
+    /* object-position: ; */
+
+}
+
+h1{
+   text-align: center;
+}
+
+p{
+    text-align: center;
+}
+
+footer{
+    display: flex;
+    justify-content: space-around;
+    margin-top: 20px;
+
+}
+
+footer > .line{
+    height: 4px;
+    border-radius: 4px;
+    width: 120px;
+    background-color: blue  ;
+}   
+
+.left > form{
+    border: 2px solid black;
+    position: absolute;
+    top: 100px;
+    left: 100px;
+    height: 350px;
+    width: 400px;
+
+}
+
+form > h1{
+    font-style: normal;
+    font-weight: 900;
+}
+
+form > .la{
+    font-size: 25px;
+    font-weight: 900;
+    
+}
+
+form > .box{
+    
+}
+

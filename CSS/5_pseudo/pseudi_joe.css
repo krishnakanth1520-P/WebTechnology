@@ -1,0 +1,54 @@
+.box1{
+    background-color: lightblue;
+}
+.box1 > p{
+    font-size: 20px;
+    font-style: italic;
+    letter-spacing: 2px;
+}
+.box1 > h2{
+    text-align: center;
+    text-transform: capitalize;
+    color: red;
+    letter-spacing: 3px;
+}
+.box1 > h1{
+    text-align: center;
+    text-transform: capitalize;
+    color: red;
+    letter-spacing: 3px;
+}
+.box1 > button{
+    background-color: black;
+    color: red;
+}
+.box1 > button:hover{
+    background-color: azure;
+    font-size: 18px;
+}
+.box1 > button:active{
+    background-color: blue;
+}
+.box1 > ol > li{
+    font-size: 10px;
+    color: palevioletred;
+    font-weight: bold;
+    letter-spacing: 2px;
+}
+.box1 > ol > li:nth-child(4)
+{
+   color: black;
+}
+.box1 > ol > li:nth-child(2n){
+    background-color: black;
+    color: blueviolet;
+}
+.box1 > ol > li:nth-child(2n+1){
+    background-color: red;
+}
+.box2 > h1:nth-child(2){
+    background-color: aquamarine;
+}
+.box1 > ol > li:hover{
+    background-color: aqua;
+}

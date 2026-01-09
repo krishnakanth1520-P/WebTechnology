@@ -1,0 +1,76 @@
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+.outer{
+    height: 100vh;
+    background: linear-gradient(to right top,black,red);
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    position: relative;
+   
+}
+.card{
+    height: 300px;
+    width: 400px;
+    background-color: white;
+    border-radius: 20px;
+    overflow: hidden;
+    transition: all 1.5s;
+    box-shadow: 3px 3px 4px black;
+    
+}
+.card:hover{
+    transform: translateY(-10px);
+}
+.card>h2{
+    text-transform: capitalize;
+    text-align: center;
+    margin-top: 20px;
+}
+#card1>img{
+    height: 60%;
+    width: 100%;
+    object-fit: cover;
+    object-position: center;
+}
+#card2 > img{
+    height: 60%;
+    width: 100%;
+    object-fit: cover;
+    object-position: top;
+}
+#card3>img{
+    height: 60%;
+    width: 100%;
+    object-fit: cover;
+    object-position: top;
+}
+.outer>h1{
+    position: absolute;
+    top: 30px;
+    color: white;
+    text-transform: capitalize;
+    letter-spacing: 2px;
+    text-shadow: 2px 2px 3px black;
+    animation: typing 4s steps(18) infinite;
+    white-space: nowrap;
+    border-right: 2px solid white;
+    overflow: hidden;
+}
+@keyframes typing {
+    0%{
+        width: 0;
+
+    }
+    50%{
+        width: 20ch;
+
+    }
+    100%{
+        width: 0;
+    }
+    
+}

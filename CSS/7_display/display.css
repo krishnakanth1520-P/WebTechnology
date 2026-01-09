@@ -1,0 +1,47 @@
+.outer{
+    background-color: chocolate;
+    height: 500px;
+    width: 1000px;
+    
+}
+
+.outer > .box{
+    height: 80px;
+    width: 100px;
+    border: 3px solid white;
+}
+
+.outer > #box1{
+    display: inline-flex;
+}
+
+.outer > #box2{
+    display: inline-block;
+}
+
+.outer > #box3{
+    display: inline;
+}
+
+.outer1{
+    background-color:rgb(238, 158, 9);
+    width: 200px;
+    height: 130px;
+    border-radius: 10px;
+    padding: 20px;
+}
+.outer1 > button{
+    display: block;
+    background-color: red;
+    height: 20px;
+    width: 200px;
+    color: white;
+    margin: 5px;
+    border-radius: 6px;
+    text-transform: uppercase;
+    font-weight: bold;
+    font-size: 10px;
+}
+button:hover{
+    background-color: aqua;
+}

@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Moodify – Mood Based Music</title>
+
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Poppins', sans-serif;
+            background: #0d0d0d;
+            color: white;
+        }
+
+        h1 {
+            text-align: center;
+            padding: 40px 0;
+            font-size: 40px;
+            letter-spacing: 2px;
+        }
+
+        /* Mood Cards */
+        .mood-container {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            padding: 20px;
+            flex-wrap: wrap;
+        }
+
+        .card {
+            width: 200px;
+            height: 200px;
+            border-radius: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 26px;
+            font-weight: bold;
+            cursor: pointer;
+            text-decoration: none;
+            color: white;
+            transition: 0.3s;
+        }
+
+        .card:hover {
+            transform: scale(1.1);
+            box-shadow: 0 0 20px white;
+        }
+
+        #happyCard { background: linear-gradient(45deg, #ffdd00, #ff9900); }
+        #sadCard { background: linear-gradient(45deg, #0066ff, #000099); }
+        #chillCard { background: linear-gradient(45deg, #00cc99, #00664d); }
+        #energyCard { background: linear-gradient(45deg, #ff0033, #990000); }
+
+        /* Mood Sections */
+        section {
+            padding: 50px;
+            margin-top: 40px;
+            border-radius: 20px;
+            width: 80%;
+            margin-left: auto;
+            margin-right: auto;
+            display: none;
+        }
+
+        section:target {
+            display: block;
+            animation: fadeIn 0.5s ease-in-out;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .playlist-item {
+            padding: 10px 0;
+            font-size: 20px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <h1>How Are You Feeling Today?</h1>
+
+    <div class="mood-container">
+        <a href="#happy" class="card" id="happyCard">😊 Happy</a>
+        <a href="#sad" class="card" id="sadCard">😢 Sad</a>
+        <a href="#chill" class="card" id="chillCard">😎 Chill</a>
+        <a href="#energy" class="card" id="energyCard">🔥 Energetic</a>
+    </div>
+
+    <!-- HAPPY SECTION -->
+    <section id="happy" style="background: linear-gradient(45deg, #ffdd00, #ff9900);">
+        <h2>😊 Happy Playlist</h2>
+        <div class="playlist-item">• Happy Vibes – Pharrell Williams</div>
+        <div class="playlist-item">• Good Time – Owl City</div>
+        <div class="playlist-item">• On Top of the World – Imagine Dragons</div>
+    </section>
+
+    <!-- SAD SECTION -->
+    <section id="sad" style="background: linear-gradient(45deg, #0066ff, #000099);">
+        <h2>😢 Sad Playlist</h2>
+        <div class="playlist-item">• Someone Like You – Adele</div>
+        <div class="playlist-item">• Let Her Go – Passenger</div>
+        <div class="playlist-item">• Fix You – Coldplay</div>
+    </section>
+
+    <!-- CHILL SECTION -->
+    <section id="chill" style="background: linear-gradient(45deg, #00cc99, #00664d);">
+        <h2>😎 Chill Playlist</h2>
+        <div class="playlist-item">• Sunset Lover – Petit Biscuit</div>
+        <div class="playlist-item">• Heat Waves – Glass Animals</div>
+        <div class="playlist-item">• Perfect – Ed Sheeran</div>
+    </section>
+
+    <!-- ENERGETIC SECTION -->
+    <section id="energy" style="background: linear-gradient(45deg, #ff0033, #990000);">
+        <h2>🔥 Energetic Playlist</h2>
+        <div class="playlist-item">• Believer – Imagine Dragons</div>
+        <div class="playlist-item">• Industry Baby – Lil Nas X</div>
+        <div class="playlist-item">• Thunder – Imagine Dragons</div>
+    </section>
+
+</body>
+</html>

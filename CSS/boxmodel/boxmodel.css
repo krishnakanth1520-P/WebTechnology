@@ -1,0 +1,48 @@
+
+
+h1{
+    color: blue;
+    font-size: 1.2cm;
+    text-align: center;
+}
+
+h2{
+    color: rgb(23, 96, 71);
+    font-size: 0.9cm;
+    text-align: center;
+}
+.card1{
+    background-color: aquamarine;
+    height: 200px;
+    width: 200px;
+    margin-left:10px;
+    margin-top: 60px;
+    padding: 10px;
+    margin-bottom: 50px;
+    border: 5px solid red;
+    
+}
+.card2{
+    background-color: rgb(214, 255, 7);
+    height: 200px;
+    width: 200px;
+    padding: 10px;
+    margin-top: 30px;
+    margin-left: 10px;
+    border: 5px solid green;    
+    
+}
+
+.card1 > h2{
+    border: 3px solid red;
+    padding-bottom: 20px;
+    margin-bottom: 10px;
+}
+
+.card1 > p{
+    border:3px solid green;
+}
+
+.card3 > button{
+    margin-left: 50px;
+}

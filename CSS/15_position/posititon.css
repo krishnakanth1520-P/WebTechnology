@@ -1,0 +1,95 @@
+/* 
+position: relative; -----> it gives the space from the postion of the object */
+
+/* position: absolute; -----> it will change the position based on the nearest Anchestors 
+                      ------> For the anchestor */
+
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+
+}
+
+.outer{
+    height: 100vh;
+    background: linear-gradient(to right, rgb(255, 4, 4), rgb(255, 102, 0),yellow);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.outer > .inner{
+    background-color: white;
+    height: 85%;
+    width: 90%;
+    position: relative;
+}
+
+.inner > #box1{
+    height: 60px;
+    width: 60px;
+    background-color: rgb(0, 255, 255);
+    position: absolute;
+    right: 0px;
+    bottom: 0px;
+    
+} 
+
+.inner > #box2{
+    height: 70px;
+    width: 70px;
+    background-color: rgb(27, 237, 55);
+    position: absolute;
+    bottom: 0px;
+    
+}
+
+.inner > #box3{
+    height: 80px;
+    width: 80px;
+    background-color: rgb(80, 28, 221);
+    position: absolute;
+
+   
+}   
+
+.inner > #box4{
+    height: 90px;
+    width: 90px;
+    background-color: rgb(222, 36, 172);
+    position: absolute;
+    right: 0px;
+    top: 0px;
+    
+}
+.inner > #box5{
+    height: 100px;
+    width: 100px;
+    background-color: rgb(255, 24, 24);
+    
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+   
+}
+.inner > .box{
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    font-size: 20px;
+    text-transform: uppercase;
+}
+
+
+
+
+
+
+
+
+
+
+
